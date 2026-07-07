@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react"; // Added useEffect here to fix Vercel crash!
 import { LanguageProvider, useLang } from "@/lib/i18n";
 import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
@@ -36,7 +36,6 @@ function Footer() {
 
 function Shell() {
   const [preset, setPreset] = useState("");
-  // Assuming your i18n hook exposes the current language state (e.g., 'en' or 'hi')
   const { currentLang } = useLang();
 
   useEffect(() => {
@@ -46,7 +45,6 @@ function Shell() {
   }, [currentLang]);
   return (
     <div className="min-h-screen font-sans">
-      {/* Structural Headers/Nav elements go inside <nav> or <header> within your <Nav /> component */}
       <Nav />
 
       <main id="main-content">
