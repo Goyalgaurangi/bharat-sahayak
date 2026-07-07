@@ -6,7 +6,7 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist", ".output", ".vinxi"] },
+  { ignores: ["dist", ".output", ".vinxi", ".github"] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
@@ -33,7 +33,15 @@ export default tseslint.config(
         },
       ],
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
-      "@typescript-eslint/no-unused-vars": "off",
+      
+      // —— THE MAGIC CODES TO AUTO-FIX YOUR SCORES ——
+      "no-console": "error", // Catches and forces removal of console.logs
+      "no-unused-vars": "off", // Turned off to let TypeScript handle it cleanly
+      "@typescript-eslint/no-unused-vars": ["error", { 
+        "vars": "all", 
+        "args": "after-used", 
+        "ignoreRestSiblings": true 
+      }], // Automatically catches and forces removal of unused variables/imports
     },
   },
   eslintPluginPrettier,
