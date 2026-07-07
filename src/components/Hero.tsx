@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { useLang } from "@/lib/i18n";
 import { ChakraIcon } from "./ChakraIcon";
 
-const slogans = [
-  "सत्यमेव जयते",
-  "जय हिंद",
-  "जय भारत माता",
-];
+const slogans = ["सत्यमेव जयते", "जय हिंद", "जय भारत माता"];
 
 const stats = [
   { key: "statSchemes" as const, value: 1240, emoji: "📜" },
@@ -18,7 +14,11 @@ const chips = [
   { key: "qaLicense" as const, target: "#navigator", query: "I want a driving license" },
   { key: "qaAadhaar" as const, target: "#navigator", query: "How to update my Aadhaar address" },
   { key: "qaPmKisan" as const, target: "#navigator", query: "How to apply for PM Kisan Yojana" },
-  { key: "qaPension" as const, target: "#navigator", query: "How to apply for senior citizen pension" },
+  {
+    key: "qaPension" as const,
+    target: "#navigator",
+    query: "How to apply for senior citizen pension",
+  },
 ];
 
 function useCountUp(target: number, duration = 1400) {
@@ -70,13 +70,14 @@ export function Hero({ onChipClick }: { onChipClick: (q: string) => void }) {
             <span className="block text-2xl md:text-3xl mt-1 text-navy">स्मार्ट भारत</span>
           </h1>
           <div className="h-8 relative w-full">
-            <div key={i} className="animate-float-up text-2xl md:text-3xl font-display font-extrabold text-tricolor">
+            <div
+              key={i}
+              className="animate-float-up text-2xl md:text-3xl font-display font-extrabold text-tricolor"
+            >
               {slogans[i]}
             </div>
           </div>
-          <p className="max-w-2xl text-base md:text-lg text-navy/80">
-            {s("heroSub")}
-          </p>
+          <p className="max-w-2xl text-base md:text-lg text-navy/80">{s("heroSub")}</p>
           <div className="flex flex-wrap justify-center gap-2 mt-2">
             {chips.map((c) => (
               <button

@@ -43,8 +43,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      role="alert"
-      aria-live="assertive"
+      role="alert" aria-live="assertive"
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
           This page didn't load
@@ -81,10 +80,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Smart Bharat — AI Civic Companion for India" },
-      { name: "description", content: "Smart Bharat helps Indian citizens navigate government schemes, licenses, complaints and forms with AI — bilingual in Hindi and English." },
+      {
+        name: "description",
+        content:
+          "Smart Bharat helps Indian citizens navigate government schemes, licenses, complaints and forms with AI — bilingual in Hindi and English.",
+      },
       { name: "author", content: "Smart Bharat" },
       { property: "og:title", content: "Smart Bharat — AI Civic Companion" },
-      { property: "og:description", content: "Government schemes, licences, complaints and forms explained in Hindi and English by AI." },
+      {
+        property: "og:description",
+        content:
+          "Government schemes, licences, complaints and forms explained in Hindi and English by AI.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -116,8 +123,8 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         {/* Adds a hidden skip link so keyboard/screen reader users can bypass the navigation menu */}
-        <a 
-          href="#main-content" 
+        <a
+          href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:font-medium"
         >
           Skip to main content

@@ -70,12 +70,19 @@ export function Schemes() {
             {s("loading")}
           </div>
         )}
-        {err && <div className="rounded-xl bg-red-50 border border-red-200 p-3 text-red-700 text-sm">{err}</div>}
+        {err && (
+          <div className="rounded-xl bg-red-50 border border-red-200 p-3 text-red-700 text-sm">
+            {err}
+          </div>
+        )}
 
         {items.length > 0 && (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 animate-float-up">
             {items.map((it, i) => (
-              <div key={i} className="card-elevate rounded-2xl p-5 flex flex-col gap-2 relative overflow-hidden">
+              <div
+                key={i}
+                className="card-elevate rounded-2xl p-5 flex flex-col gap-2 relative overflow-hidden"
+              >
                 <div className="absolute top-0 right-0 w-20 h-1 bg-tricolor rounded-bl-2xl" />
                 <div className="text-3xl">{it.emoji}</div>
                 <h3 className="font-bold text-navy leading-tight">
@@ -86,13 +93,21 @@ export function Schemes() {
                 </h3>
                 <div className="text-xs">
                   <div className="font-semibold text-india-green-deep">{s("benefit")}</div>
-                  <div className="text-navy/80">{lang === "en" ? it.benefit_en : it.benefit_hi}</div>
-                  <div className="text-navy/50">{lang === "en" ? it.benefit_hi : it.benefit_en}</div>
+                  <div className="text-navy/80">
+                    {lang === "en" ? it.benefit_en : it.benefit_hi}
+                  </div>
+                  <div className="text-navy/50">
+                    {lang === "en" ? it.benefit_hi : it.benefit_en}
+                  </div>
                 </div>
                 <div className="text-xs">
                   <div className="font-semibold text-saffron-deep">{s("eligibility")}</div>
-                  <div className="text-navy/80">{lang === "en" ? it.eligibility_en : it.eligibility_hi}</div>
-                  <div className="text-navy/50">{lang === "en" ? it.eligibility_hi : it.eligibility_en}</div>
+                  <div className="text-navy/80">
+                    {lang === "en" ? it.eligibility_en : it.eligibility_hi}
+                  </div>
+                  <div className="text-navy/50">
+                    {lang === "en" ? it.eligibility_hi : it.eligibility_en}
+                  </div>
                 </div>
                 <a
                   href={it.apply_url || "#"}
@@ -109,7 +124,10 @@ export function Schemes() {
         )}
         {!loading && items.length === 0 && !err && (
           <div className="text-center py-8">
-            <button onClick={() => load(profile)} className="btn-saffron px-6 py-3 rounded-xl font-semibold">
+            <button
+              onClick={() => load(profile)}
+              className="btn-saffron px-6 py-3 rounded-xl font-semibold"
+            >
               {s("loadSchemes")}
             </button>
           </div>

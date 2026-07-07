@@ -72,13 +72,21 @@ export function Navigator({ presetQuery }: { presetQuery: string }) {
           </button>
         </div>
 
-        {err && <div className="mt-4 rounded-xl bg-red-50 border border-red-200 p-3 text-red-700 text-sm">{err}</div>}
+        {err && (
+          <div className="mt-4 rounded-xl bg-red-50 border border-red-200 p-3 text-red-700 text-sm">
+            {err}
+          </div>
+        )}
 
         {res && (
           <div className="mt-6 grid md:grid-cols-2 gap-4 animate-float-up">
             <div className="card-elevate rounded-2xl p-5">
-              <h3 className="font-bold text-navy text-xl mb-1">{pick(res.title_en, res.title_hi)}</h3>
-              <div className="text-sm text-navy/60 mb-4">{lang === "en" ? res.title_hi : res.title_en}</div>
+              <h3 className="font-bold text-navy text-xl mb-1">
+                {pick(res.title_en, res.title_hi)}
+              </h3>
+              <div className="text-sm text-navy/60 mb-4">
+                {lang === "en" ? res.title_hi : res.title_en}
+              </div>
 
               <Section title={s("steps")} icon="📋">
                 <ol className="space-y-2 list-none">
@@ -108,10 +116,23 @@ export function Navigator({ presetQuery }: { presetQuery: string }) {
               </Section>
 
               <div className="grid grid-cols-2 gap-3 mt-4">
-                <MiniStat label={s("fees")} value={pick(res.fees_en, res.fees_hi)} sub={lang === "en" ? res.fees_hi : res.fees_en} />
-                <MiniStat label={s("time")} value={pick(res.time_en, res.time_hi)} sub={lang === "en" ? res.time_hi : res.time_en} />
+                <MiniStat
+                  label={s("fees")}
+                  value={pick(res.fees_en, res.fees_hi)}
+                  sub={lang === "en" ? res.fees_hi : res.fees_en}
+                />
+                <MiniStat
+                  label={s("time")}
+                  value={pick(res.time_en, res.time_hi)}
+                  sub={lang === "en" ? res.time_hi : res.time_en}
+                />
               </div>
-              <MiniStat className="mt-3" label={s("office")} value={pick(res.office_en, res.office_hi)} sub={lang === "en" ? res.office_hi : res.office_en} />
+              <MiniStat
+                className="mt-3"
+                label={s("office")}
+                value={pick(res.office_en, res.office_hi)}
+                sub={lang === "en" ? res.office_hi : res.office_en}
+              />
 
               <Section title={s("mistakes")} icon="⚠️" className="mt-4">
                 <ul className="space-y-1">
@@ -132,7 +153,10 @@ export function Navigator({ presetQuery }: { presetQuery: string }) {
                 {s("roadmap")}
               </h3>
               <div className="text-sm text-navy/70 mb-4">
-                {s("completion")}: <b>{res.estimated_days} {lang === "en" ? "days" : "दिन"}</b>
+                {s("completion")}:{" "}
+                <b>
+                  {res.estimated_days} {lang === "en" ? "days" : "दिन"}
+                </b>
               </div>
               <ol className="relative border-l-2 border-saffron/50 ml-3 space-y-4">
                 {res.roadmap.map((r, i) => (
@@ -141,25 +165,35 @@ export function Navigator({ presetQuery }: { presetQuery: string }) {
                       <input
                         type="checkbox"
                         checked={done[i] ?? false}
-                        onChange={(e) => setDone((d) => d.map((v, idx) => (idx === i ? e.target.checked : v)))}
+                        onChange={(e) =>
+                          setDone((d) => d.map((v, idx) => (idx === i ? e.target.checked : v)))
+                        }
                         className="w-4 h-4 accent-india-green"
                       />
                     </div>
                     <div className="pl-3">
                       <div className="text-xs font-semibold uppercase tracking-wide text-india-green-deep">
                         {pick(r.when_en, r.when_hi)}{" "}
-                        <span className="text-navy/50 font-normal normal-case">/ {lang === "en" ? r.when_hi : r.when_en}</span>
+                        <span className="text-navy/50 font-normal normal-case">
+                          / {lang === "en" ? r.when_hi : r.when_en}
+                        </span>
                       </div>
-                      <div className={`text-sm text-navy mt-0.5 ${done[i] ? "line-through opacity-60" : ""}`}>
+                      <div
+                        className={`text-sm text-navy mt-0.5 ${done[i] ? "line-through opacity-60" : ""}`}
+                      >
                         {pick(r.task_en, r.task_hi)}
                       </div>
-                      <div className="text-xs text-navy/60">{lang === "en" ? r.task_hi : r.task_en}</div>
+                      <div className="text-xs text-navy/60">
+                        {lang === "en" ? r.task_hi : r.task_en}
+                      </div>
                     </div>
                   </li>
                 ))}
               </ol>
               <button
-                onClick={() => document.getElementById("visit")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() =>
+                  document.getElementById("visit")?.scrollIntoView({ behavior: "smooth" })
+                }
                 className="mt-5 w-full btn-green rounded-xl px-4 py-3 font-bold inline-flex items-center justify-center gap-2"
               >
                 📍 {s("planMyVisit")}
@@ -172,7 +206,17 @@ export function Navigator({ presetQuery }: { presetQuery: string }) {
   );
 }
 
-function Section({ title, icon, children, className = "" }: { title: string; icon: string; children: React.ReactNode; className?: string }) {
+function Section({
+  title,
+  icon,
+  children,
+  className = "",
+}: {
+  title: string;
+  icon: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
     <div className={`mt-4 ${className}`}>
       <div className="text-sm font-bold text-navy mb-2 flex items-center gap-1.5">
@@ -184,7 +228,17 @@ function Section({ title, icon, children, className = "" }: { title: string; ico
   );
 }
 
-function MiniStat({ label, value, sub, className = "" }: { label: string; value: string; sub: string; className?: string }) {
+function MiniStat({
+  label,
+  value,
+  sub,
+  className = "",
+}: {
+  label: string;
+  value: string;
+  sub: string;
+  className?: string;
+}) {
   return (
     <div className={`rounded-xl bg-white/70 border border-navy/10 p-3 ${className}`}>
       <div className="text-[10px] uppercase font-bold tracking-wide text-navy/60">{label}</div>

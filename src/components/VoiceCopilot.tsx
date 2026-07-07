@@ -11,7 +11,8 @@ type SpeechRecognitionInstance = {
   continuous: boolean;
   start: () => void;
   stop: () => void;
-  onresult: ((e: { results: ArrayLike<{ 0: { transcript: string }; isFinal: boolean }> }) => void) | null;
+  onresult:
+    ((e: { results: ArrayLike<{ 0: { transcript: string }; isFinal: boolean }> }) => void) | null;
   onerror: ((e: unknown) => void) | null;
   onend: (() => void) | null;
 };
@@ -45,7 +46,11 @@ export function VoiceCopilot() {
     setTranscript("");
     const rec = getRecognition();
     if (!rec) {
-      setErr(uiLang === "en" ? "Speech recognition not supported in this browser." : "यह ब्राउज़र वॉइस पहचान का समर्थन नहीं करता।");
+      setErr(
+        uiLang === "en"
+          ? "Speech recognition not supported in this browser."
+          : "यह ब्राउज़र वॉइस पहचान का समर्थन नहीं करता।",
+      );
       return;
     }
     rec.lang = voiceLang === "hi" ? "hi-IN" : "en-IN";
@@ -62,7 +67,11 @@ export function VoiceCopilot() {
     rec.onend = () => setListening(false);
     recRef.current = rec;
     setListening(true);
-    try { rec.start(); } catch { setListening(false); }
+    try {
+      rec.start();
+    } catch {
+      setListening(false);
+    }
   };
 
   const stop = () => {
@@ -96,7 +105,9 @@ export function VoiceCopilot() {
   return (
     <section id="voice" className="scroll-mt-20 py-14 bg-tricolor-soft chakra-watermark">
       <div className="mx-auto max-w-3xl px-4 text-center">
-        <h2 className="font-display font-extrabold text-3xl md:text-4xl text-navy">{s("voiceTitle")}</h2>
+        <h2 className="font-display font-extrabold text-3xl md:text-4xl text-navy">
+          {s("voiceTitle")}
+        </h2>
         <p className="text-navy/70 mt-2">{s("voiceDesc")}</p>
 
         <div className="mt-6 flex justify-center gap-2">
@@ -146,14 +157,21 @@ export function VoiceCopilot() {
               <div className="text-xs uppercase font-bold text-india-green-deep">
                 {voiceLang === "hi" ? "स्मार्ट भारत" : "Smart Bharat"}
               </div>
-              <button onClick={() => speak(answer)} className="text-xs inline-flex items-center gap-1 text-navy hover:text-saffron-deep">
+              <button
+                onClick={() => speak(answer)}
+                className="text-xs inline-flex items-center gap-1 text-navy hover:text-saffron-deep"
+              >
                 🔊 {s("speak")}
               </button>
             </div>
             <div className="text-navy mt-1 whitespace-pre-wrap">{answer}</div>
           </div>
         )}
-        {err && <div className="mt-3 rounded bg-red-50 border border-red-200 p-2 text-red-700 text-sm">{err}</div>}
+        {err && (
+          <div className="mt-3 rounded bg-red-50 border border-red-200 p-2 text-red-700 text-sm">
+            {err}
+          </div>
+        )}
       </div>
     </section>
   );

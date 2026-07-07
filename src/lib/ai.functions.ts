@@ -176,35 +176,43 @@ export const aiVoiceAnswer = createServerFn({ method: "POST" })
   });
 
 // -------- News --------
-export type NewsItem = { title: string; title_hi?: string; link: string; source?: string; pubDate?: string };
-export const fetchIndiaNews = createServerFn({ method: "GET" }).handler(async (): Promise<NewsItem[]> => {
-  // Google News RSS -> JSON via public rss2json (no key required for low volume)
-  const url =
-    "https://api.rss2json.com/v1/api.json?rss_url=" +
-    encodeURIComponent("https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en");
-  try {
-    const res = await fetch(url, { headers: { "User-Agent": "SmartBharat/1.0" } });
-    if (!res.ok) throw new Error(String(res.status));
-    const data = (await res.json()) as {
-      items?: { title: string; link: string; pubDate: string; author?: string }[];
-    };
-    return (data.items ?? []).slice(0, 12).map((it) => ({
-      title: it.title,
-      link: it.link,
-      pubDate: it.pubDate,
-      source: it.author,
-    }));
-  } catch {
-    // graceful fallback
-    return [
-      { title: "PM launches new digital India initiative", link: "https://pib.gov.in" },
-      { title: "Union Budget highlights schemes for farmers", link: "https://pib.gov.in" },
-      { title: "ISRO announces next lunar mission", link: "https://isro.gov.in" },
-      { title: "Aadhaar update deadline extended", link: "https://uidai.gov.in" },
-      { title: "PM Kisan 16th installment released", link: "https://pmkisan.gov.in" },
-    ];
-  }
-});
+export type NewsItem = {
+  title: string;
+  title_hi?: string;
+  link: string;
+  source?: string;
+  pubDate?: string;
+};
+export const fetchIndiaNews = createServerFn({ method: "GET" }).handler(
+  async (): Promise<NewsItem[]> => {
+    // Google News RSS -> JSON via public rss2json (no key required for low volume)
+    const url =
+      "https://api.rss2json.com/v1/api.json?rss_url=" +
+      encodeURIComponent("https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en");
+    try {
+      const res = await fetch(url, { headers: { "User-Agent": "SmartBharat/1.0" } });
+      if (!res.ok) throw new Error(String(res.status));
+      const data = (await res.json()) as {
+        items?: { title: string; link: string; pubDate: string; author?: string }[];
+      };
+      return (data.items ?? []).slice(0, 12).map((it) => ({
+        title: it.title,
+        link: it.link,
+        pubDate: it.pubDate,
+        source: it.author,
+      }));
+    } catch {
+      // graceful fallback
+      return [
+        { title: "PM launches new digital India initiative", link: "https://pib.gov.in" },
+        { title: "Union Budget highlights schemes for farmers", link: "https://pib.gov.in" },
+        { title: "ISRO announces next lunar mission", link: "https://isro.gov.in" },
+        { title: "Aadhaar update deadline extended", link: "https://uidai.gov.in" },
+        { title: "PM Kisan 16th installment released", link: "https://pmkisan.gov.in" },
+      ];
+    }
+  },
+);
 
 // -------- Office Visit Predictor --------
 const VisitInput = z.object({
@@ -256,7 +264,10 @@ Be consistent with real Indian office patterns.`;
     const out = await callAI({
       messages: [
         { role: "system", content: sys },
-        { role: "user", content: `Office: ${data.officeType}\nLocation: ${data.location}\nGenerate prediction.` },
+        {
+          role: "user",
+          content: `Office: ${data.officeType}\nLocation: ${data.location}\nGenerate prediction.`,
+        },
       ],
       json: true,
       temperature: 0.7,

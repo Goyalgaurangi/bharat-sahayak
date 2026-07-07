@@ -3,7 +3,9 @@ const BASE = "https://ai.gateway.lovable.dev/v1";
 
 export type ChatMessage = {
   role: "system" | "user" | "assistant";
-  content: string | Array<{ type: "text"; text: string } | { type: "image_url"; image_url: { url: string } }>;
+  content:
+    | string
+    | Array<{ type: "text"; text: string } | { type: "image_url"; image_url: { url: string } }>;
 };
 
 export async function callAI(opts: {
@@ -38,7 +40,10 @@ export async function callAI(opts: {
 }
 
 export function extractJSON<T = unknown>(s: string): T {
-  const cleaned = s.replace(/^```(?:json)?/i, "").replace(/```$/, "").trim();
+  const cleaned = s
+    .replace(/^```(?:json)?/i, "")
+    .replace(/```$/, "")
+    .trim();
   try {
     return JSON.parse(cleaned) as T;
   } catch {

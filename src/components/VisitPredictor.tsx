@@ -21,18 +21,15 @@ function pick<T>(lang: Lang, en: T, hi: T) {
 }
 
 function crowdColor(level: string) {
-  if (level === "Low") return { bg: "bg-india-green", text: "text-white", ring: "ring-india-green" };
-  if (level === "High") return { bg: "bg-destructive", text: "text-white", ring: "ring-destructive" };
+  if (level === "Low")
+    return { bg: "bg-india-green", text: "text-white", ring: "ring-india-green" };
+  if (level === "High")
+    return { bg: "bg-destructive", text: "text-white", ring: "ring-destructive" };
   return { bg: "bg-saffron", text: "text-white", ring: "ring-saffron" };
 }
 
 function HeatCell({ v }: { v: number }) {
-  const colors = [
-    "bg-india-green/70",
-    "bg-saffron/50",
-    "bg-saffron/85",
-    "bg-destructive/85",
-  ];
+  const colors = ["bg-india-green/70", "bg-saffron/50", "bg-saffron/85", "bg-destructive/85"];
   const label = ["◔", "◑", "◕", "●"];
   return (
     <div
@@ -90,7 +87,9 @@ export function VisitPredictor() {
         <div className="card-elevate rounded-3xl p-5 md:p-6 bg-tricolor-soft">
           <div className="grid md:grid-cols-[1.2fr_1fr_auto] gap-3 items-end">
             <div>
-              <label className="text-xs font-bold text-navy uppercase tracking-wide">{s("officeType")}</label>
+              <label className="text-xs font-bold text-navy uppercase tracking-wide">
+                {s("officeType")}
+              </label>
               <select
                 value={office}
                 onChange={(e) => setOffice(e.target.value)}
@@ -105,14 +104,21 @@ export function VisitPredictor() {
               </select>
             </div>
             <div>
-              <label className="text-xs font-bold text-navy uppercase tracking-wide">{s("officeLocation")}</label>
+              <label className="text-xs font-bold text-navy uppercase tracking-wide">
+                {s("officeLocation")}
+              </label>
               <div className="relative mt-1">
-                <MapPin size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-india-green" />
+                <MapPin
+                  size={18}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-india-green"
+                />
                 <input
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && submit()}
-                  placeholder={lang === "en" ? "e.g. Pune, Andheri Mumbai" : "उदा. पुणे, अंधेरी मुंबई"}
+                  placeholder={
+                    lang === "en" ? "e.g. Pune, Andheri Mumbai" : "उदा. पुणे, अंधेरी मुंबई"
+                  }
                   className="w-full rounded-xl border-2 border-india-green/40 focus:border-india-green focus:ring-2 focus:ring-india-green/30 outline-none pl-10 pr-4 py-3 font-semibold text-navy"
                 />
               </div>
@@ -135,7 +141,11 @@ export function VisitPredictor() {
               )}
             </button>
           </div>
-          {err && <div className="mt-3 rounded-xl bg-red-50 border border-red-300 p-3 text-red-700 text-sm">{err}</div>}
+          {err && (
+            <div className="mt-3 rounded-xl bg-red-50 border border-red-300 p-3 text-red-700 text-sm">
+              {err}
+            </div>
+          )}
         </div>
 
         {loading && (
@@ -154,7 +164,9 @@ export function VisitPredictor() {
                 {s("crowdLevel")}
               </div>
               <div className="mt-3">
-                <div className={`inline-flex px-3 py-1 rounded-full ${c.bg} ${c.text} text-sm font-black shadow-md`}>
+                <div
+                  className={`inline-flex px-3 py-1 rounded-full ${c.bg} ${c.text} text-sm font-black shadow-md`}
+                >
                   {pick(lang, res.crowd_level, res.crowd_level_hi)}
                 </div>
               </div>
@@ -164,7 +176,9 @@ export function VisitPredictor() {
                   style={{ width: `${res.crowd_percent}%` }}
                 />
               </div>
-              <div className="mt-2 text-xs text-navy/70 font-semibold">{res.crowd_percent}% capacity</div>
+              <div className="mt-2 text-xs text-navy/70 font-semibold">
+                {res.crowd_percent}% capacity
+              </div>
               <div className="mt-3 text-xs text-navy/70">
                 {pick(lang, res.office_en, res.office_hi)}
               </div>
@@ -182,9 +196,22 @@ export function VisitPredictor() {
               </div>
               <div className="mt-3 relative w-24 h-24 mx-auto">
                 <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
-                  <circle cx="50" cy="50" r="42" stroke="currentColor" strokeWidth="8" fill="none" className="text-india-green/15" />
                   <circle
-                    cx="50" cy="50" r="42" stroke="currentColor" strokeWidth="8" fill="none"
+                    cx="50"
+                    cy="50"
+                    r="42"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    fill="none"
+                    className="text-india-green/15"
+                  />
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="42"
+                    stroke="currentColor"
+                    strokeWidth="8"
+                    fill="none"
                     strokeDasharray={264}
                     strokeDashoffset={264 - (Math.min(res.wait_minutes, 180) / 180) * 264}
                     strokeLinecap="round"
@@ -225,14 +252,20 @@ export function VisitPredictor() {
                       <input
                         type="checkbox"
                         checked={done[i] ?? false}
-                        onChange={(e) => setDone((arr) => arr.map((v, idx) => (idx === i ? e.target.checked : v)))}
+                        onChange={(e) =>
+                          setDone((arr) => arr.map((v, idx) => (idx === i ? e.target.checked : v)))
+                        }
                         className="mt-0.5 w-4 h-4 accent-india-green"
                       />
                       <div>
-                        <div className={`text-sm font-semibold text-navy ${done[i] ? "line-through opacity-60" : ""}`}>
+                        <div
+                          className={`text-sm font-semibold text-navy ${done[i] ? "line-through opacity-60" : ""}`}
+                        >
                           {pick(lang, d.en, d.hi)}
                         </div>
-                        <div className="text-[11px] text-navy/60">{lang === "en" ? d.hi : d.en}</div>
+                        <div className="text-[11px] text-navy/60">
+                          {lang === "en" ? d.hi : d.en}
+                        </div>
                       </div>
                     </label>
                   </li>
@@ -249,7 +282,9 @@ export function VisitPredictor() {
               <div className="grid grid-cols-[auto_1fr_1fr_1fr] gap-1.5 items-center text-[10px] font-bold text-navy/70">
                 <div />
                 {(lang === "en" ? res.slots_en : res.slots_hi).map((sl) => (
-                  <div key={sl} className="text-center">{sl}</div>
+                  <div key={sl} className="text-center">
+                    {sl}
+                  </div>
                 ))}
                 {res.heatmap.map((row, di) => (
                   <div key={`row-${di}`} className="contents">
@@ -263,9 +298,12 @@ export function VisitPredictor() {
                 ))}
               </div>
               <div className="mt-3 flex gap-2 text-[10px] text-navy/70 items-center">
-                <span className="inline-block w-3 h-3 rounded bg-india-green/70" />Low
-                <span className="inline-block w-3 h-3 rounded bg-saffron/85 ml-2" />Med
-                <span className="inline-block w-3 h-3 rounded bg-destructive/85 ml-2" />High
+                <span className="inline-block w-3 h-3 rounded bg-india-green/70" />
+                Low
+                <span className="inline-block w-3 h-3 rounded bg-saffron/85 ml-2" />
+                Med
+                <span className="inline-block w-3 h-3 rounded bg-destructive/85 ml-2" />
+                High
               </div>
             </div>
 

@@ -16,13 +16,18 @@ export function News() {
       try {
         const list = await run();
         if (alive) setItems(list);
-      } catch { /* ignore */ } finally {
+      } catch {
+        /* ignore */
+      } finally {
         if (alive) setLoading(false);
       }
     };
     load();
     const t = setInterval(load, 5 * 60 * 1000);
-    return () => { alive = false; clearInterval(t); };
+    return () => {
+      alive = false;
+      clearInterval(t);
+    };
   }, [run]);
 
   const ticker = items.slice(0, 8);
@@ -45,7 +50,13 @@ export function News() {
           </div>
           <div className="flex whitespace-nowrap animate-marquee gap-8 pl-24">
             {[...ticker, ...ticker].map((n, i) => (
-              <a key={i} href={n.link} target="_blank" rel="noreferrer" className="text-sm text-navy hover:text-saffron-deep">
+              <a
+                key={i}
+                href={n.link}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm text-navy hover:text-saffron-deep"
+              >
                 • {n.title}
               </a>
             ))}
@@ -55,12 +66,20 @@ export function News() {
         {loading && <div className="text-center text-navy/60 mt-6">{s("loading")}</div>}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
           {items.map((n, i) => (
-            <a key={i} href={n.link} target="_blank" rel="noreferrer" className="card-elevate rounded-2xl p-4 block relative overflow-hidden">
+            <a
+              key={i}
+              href={n.link}
+              target="_blank"
+              rel="noreferrer"
+              className="card-elevate rounded-2xl p-4 block relative overflow-hidden"
+            >
               <div className="absolute top-0 left-0 h-1 w-full bg-tricolor" />
               <div className="text-xs text-navy/50 uppercase tracking-wide font-bold mt-1">
                 {n.source ?? "India"}
               </div>
-              <div className="mt-1 font-semibold text-navy leading-snug line-clamp-3">{n.title}</div>
+              <div className="mt-1 font-semibold text-navy leading-snug line-clamp-3">
+                {n.title}
+              </div>
               <div className="mt-2 text-xs text-saffron-deep inline-flex items-center gap-1">
                 Read <ChakraIcon size={12} />
               </div>

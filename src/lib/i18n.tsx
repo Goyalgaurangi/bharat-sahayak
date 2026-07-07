@@ -76,7 +76,10 @@ export const t: Dict = {
   optReport: { en: "Report a Complaint", hi: "शिकायत दर्ज करें" },
   optReportDesc: { en: "Pothole, streetlight, garbage etc.", hi: "गड्ढा, स्ट्रीटलाइट, कचरा आदि।" },
   optForm: { en: "Understand a Form", hi: "फ़ॉर्म समझें" },
-  optFormDesc: { en: "AI explains each field in simple terms.", hi: "एआई हर फ़ील्ड सरल भाषा में समझाता है।" },
+  optFormDesc: {
+    en: "AI explains each field in simple terms.",
+    hi: "एआई हर फ़ील्ड सरल भाषा में समझाता है।",
+  },
   urgency: { en: "Urgency", hi: "प्राथमिकता" },
   low: { en: "Low", hi: "कम" },
   medium: { en: "Medium", hi: "मध्यम" },
@@ -95,7 +98,10 @@ export const t: Dict = {
   listening: { en: "Listening...", hi: "सुन रहा है..." },
   speak: { en: "Speak Answer", hi: "उत्तर सुनें" },
   newsTitle: { en: "Bharat Samachar", hi: "भारत समाचार" },
-  newsDesc: { en: "Latest India headlines, auto-refreshing.", hi: "ताज़ा भारत समाचार, स्वतः-अपडेट।" },
+  newsDesc: {
+    en: "Latest India headlines, auto-refreshing.",
+    hi: "ताज़ा भारत समाचार, स्वतः-अपडेट।",
+  },
   fields: { en: "Form Fields Explained", hi: "फ़ॉर्म फ़ील्ड समझाए गए" },
   footer: { en: "Made with ❤ for Bharat", hi: "भारत के लिए ❤ से बनाया गया" },
 
@@ -129,7 +135,11 @@ export const t: Dict = {
   officePolice: { en: "Police Station", hi: "पुलिस थाना" },
 };
 
-const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; s: (k: keyof typeof t) => string; }>({
+const LangCtx = createContext<{
+  lang: Lang;
+  setLang: (l: Lang) => void;
+  s: (k: keyof typeof t) => string;
+}>({
   lang: "en",
   setLang: () => {},
   s: (k) => t[k]?.en ?? String(k),
@@ -138,7 +148,8 @@ const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; s: (k: k
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
   useEffect(() => {
-    const saved = typeof window !== "undefined" ? (localStorage.getItem("sb-lang") as Lang | null) : null;
+    const saved =
+      typeof window !== "undefined" ? (localStorage.getItem("sb-lang") as Lang | null) : null;
     if (saved === "en" || saved === "hi") setLangState(saved);
   }, []);
   const setLang = (l: Lang) => {
@@ -152,7 +163,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 export const useLang = () => useContext(LangCtx);
 
 /** Render an English + Hindi stacked label (Hindi always visible smaller). */
-export function Bilingual({ en, hi, className = "" }: { en: string; hi: string; className?: string }) {
+export function Bilingual({
+  en,
+  hi,
+  className = "",
+}: {
+  en: string;
+  hi: string;
+  className?: string;
+}) {
   return (
     <span className={className}>
       <span className="block">{en}</span>

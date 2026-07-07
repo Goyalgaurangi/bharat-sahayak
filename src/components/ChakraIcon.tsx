@@ -1,4 +1,12 @@
-export function ChakraIcon({ className = "", spin = false, size = 24 }: { className?: string; spin?: boolean; size?: number }) {
+export function ChakraIcon({
+  className = "",
+  spin = false,
+  size = 24,
+}: {
+  className?: string;
+  spin?: boolean;
+  size?: number;
+}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
