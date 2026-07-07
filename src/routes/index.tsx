@@ -23,7 +23,7 @@ function Footer() {
       <div className="bg-navy text-white/90 py-8 chakra-watermark">
         <div className="mx-auto max-w-6xl px-4 text-center">
           <div className="inline-flex items-center gap-2 justify-center">
-            <ChakraIcon spin className="text-white" size={28} />
+            <ChakraIcon spin className="text-white" size={28} aria-hidden="true" />
             <div className="font-display font-black text-xl">Smart Bharat / स्मार्ट भारत</div>
           </div>
           <p className="mt-2 text-sm text-white/70">{s("footer")}</p>
@@ -38,14 +38,18 @@ function Shell() {
   const [preset, setPreset] = useState("");
   return (
     <div className="min-h-screen font-sans">
-      <Nav />
-      <Hero onChipClick={setPreset} />
-      <Navigator presetQuery={preset} />
-      <VisitPredictor />
-      <Schemes />
-      <ComplaintUpload />
-      <VoiceCopilot />
-      <News />
+      {/* Structural Headers/Nav elements go inside <nav> or <header> within your <Nav /> component */}
+      <Nav /> 
+      
+      <main id="main-content">
+        <Hero onChipClick={setPreset} />
+        <Navigator presetQuery={preset} />
+        <VisitPredictor />
+        <Schemes />
+        <ComplaintUpload />
+        <VoiceCopilot />
+        <News />
+      </main>
       <Footer />
     </div>
   );
