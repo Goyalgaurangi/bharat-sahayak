@@ -98,6 +98,35 @@ export const t: Dict = {
   newsDesc: { en: "Latest India headlines, auto-refreshing.", hi: "ताज़ा भारत समाचार, स्वतः-अपडेट।" },
   fields: { en: "Form Fields Explained", hi: "फ़ॉर्म फ़ील्ड समझाए गए" },
   footer: { en: "Made with ❤ for Bharat", hi: "भारत के लिए ❤ से बनाया गया" },
+
+  // Visit Predictor
+  navVisit: { en: "Visit Predictor", hi: "भेंट भविष्यवक्ता" },
+  visitTitle: { en: "Office Visit Predictor", hi: "कार्यालय भेंट भविष्यवक्ता" },
+  visitDesc: {
+    en: "AI-powered pre-visit planner — know crowd, wait time & best hours.",
+    hi: "एआई-संचालित पूर्व-भेंट योजना — भीड़, प्रतीक्षा समय और सर्वोत्तम घंटे जानें।",
+  },
+  officeType: { en: "Office Type", hi: "कार्यालय का प्रकार" },
+  officeLocation: { en: "Location (City / Area)", hi: "स्थान (शहर / क्षेत्र)" },
+  predict: { en: "Predict My Visit", hi: "मेरी भेंट की भविष्यवाणी करें" },
+  predicting: { en: "AI predicting...", hi: "एआई भविष्यवाणी कर रहा है..." },
+  crowdLevel: { en: "Crowd Level", hi: "भीड़ स्तर" },
+  bestTime: { en: "Best Time to Visit", hi: "जाने का सर्वोत्तम समय" },
+  waitTime: { en: "Estimated Wait", hi: "अनुमानित प्रतीक्षा" },
+  minutes: { en: "min", hi: "मिनट" },
+  docsChecklist: { en: "Documents Checklist", hi: "दस्तावेज़ सूची" },
+  heatmap: { en: "Weekly Crowd Heatmap", hi: "साप्ताहिक भीड़ हीटमैप" },
+  aiEstimate: { en: "AI Estimate — plan accordingly", hi: "एआई अनुमान — तदनुसार योजना बनाएँ" },
+  planMyVisit: { en: "Plan My Visit", hi: "मेरी भेंट की योजना बनाएँ" },
+  selectOffice: { en: "Select an office type", hi: "कार्यालय प्रकार चुनें" },
+  officeRTO: { en: "RTO (Transport Office)", hi: "आरटीओ (परिवहन कार्यालय)" },
+  officePassport: { en: "Passport Seva Kendra", hi: "पासपोर्ट सेवा केंद्र" },
+  officeMunicipal: { en: "Municipal Office", hi: "नगरपालिका कार्यालय" },
+  officeAadhaar: { en: "Aadhaar Enrolment Center", hi: "आधार नामांकन केंद्र" },
+  officeTahsil: { en: "Tahsil / Revenue Office", hi: "तहसील / राजस्व कार्यालय" },
+  officeGST: { en: "GST Bhavan", hi: "जीएसटी भवन" },
+  officeEPFO: { en: "EPFO Regional Office", hi: "ईपीएफओ क्षेत्रीय कार्यालय" },
+  officePolice: { en: "Police Station", hi: "पुलिस थाना" },
 };
 
 const LangCtx = createContext<{ lang: Lang; setLang: (l: Lang) => void; s: (k: keyof typeof t) => string; }>({
