@@ -19,16 +19,14 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-node-version: 20
-        cache: 'npm'
+        node-version: 20
 
-    - name: Install dependencies
-      run: npm ci || npm install
-
-    - name: Run ESLint and Auto-Fix
-      run: npm run lint -- --fix || npx eslint src --fix || true
+    - name: Force Clean Code
+      run: |
+        npm install eslint typescript-eslint @eslint/js globals eslint-plugin-react-hooks eslint-plugin-react-refresh eslint-plugin-prettier --no-save
+        npx eslint src --fix || true
 
     - name: Commit and Push Changes
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
-        commit_message: "style: automated code quality cleanup (removed unused imports/logs)"
+        commit_message: "style: automated code quality cleanup"
