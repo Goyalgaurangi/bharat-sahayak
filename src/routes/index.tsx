@@ -1,24 +1,58 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { LanguageProvider, useLang } from "@/lib/i18n";
+import { Nav } from "@/components/Nav";
+import { Hero } from "@/components/Hero";
+import { Navigator } from "@/components/Navigator";
+import { Schemes } from "@/components/Schemes";
+import { ComplaintUpload } from "@/components/ComplaintUpload";
+import { VoiceCopilot } from "@/components/VoiceCopilot";
+import { News } from "@/components/News";
+import { ChakraIcon } from "@/components/ChakraIcon";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+function Footer() {
+  const { s } = useLang();
+  return (
+    <footer className="mt-8">
+      <div className="h-3 bg-tricolor" />
+      <div className="bg-navy text-white/90 py-8 chakra-watermark">
+        <div className="mx-auto max-w-6xl px-4 text-center">
+          <div className="inline-flex items-center gap-2 justify-center">
+            <ChakraIcon spin className="text-white" size={28} />
+            <div className="font-display font-black text-xl">Smart Bharat / स्मार्ट भारत</div>
+          </div>
+          <p className="mt-2 text-sm text-white/70">{s("footer")}</p>
+          <p className="text-xs text-white/50 mt-1">Satyameva Jayate · सत्यमेव जयते</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function Shell() {
+  const [preset, setPreset] = useState("");
+  return (
+    <div className="min-h-screen font-sans">
+      <Nav />
+      <Hero onChipClick={setPreset} />
+      <Navigator presetQuery={preset} />
+      <Schemes />
+      <ComplaintUpload />
+      <VoiceCopilot />
+      <News />
+      <Footer />
+    </div>
+  );
+}
+
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <LanguageProvider>
+      <Shell />
+    </LanguageProvider>
   );
 }
