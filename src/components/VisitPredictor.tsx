@@ -252,14 +252,14 @@ export function VisitPredictor() {
                   <div key={sl} className="text-center">{sl}</div>
                 ))}
                 {res.heatmap.map((row, di) => (
-                  <>
-                    <div key={`d${di}`} className="pr-1 text-right">
+                  <div key={`row-${di}`} className="contents">
+                    <div className="pr-1 text-right">
                       {(lang === "en" ? res.days_en : res.days_hi)[di]}
                     </div>
                     {row.map((v, si) => (
                       <HeatCell key={`${di}-${si}`} v={v} />
                     ))}
-                  </>
+                  </div>
                 ))}
               </div>
               <div className="mt-3 flex gap-2 text-[10px] text-navy/70 items-center">
