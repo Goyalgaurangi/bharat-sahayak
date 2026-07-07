@@ -3,6 +3,7 @@ import { ChakraIcon } from "./ChakraIcon";
 
 const links = [
   { href: "#navigator", key: "navChat" as const },
+  { href: "#visit", key: "navVisit" as const },
   { href: "#schemes", key: "navSchemes" as const },
   { href: "#complaint", key: "navComplaint" as const },
   { href: "#voice", key: "navVoice" as const },
