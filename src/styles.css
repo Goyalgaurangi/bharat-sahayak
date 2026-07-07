@@ -43,34 +43,34 @@
 
 :root {
   --radius: 0.875rem;
-  --background: oklch(0.97 0.03 75);
-  --foreground: oklch(0.2 0.05 260);
+  --background: oklch(0.995 0.005 90);
+  --foreground: oklch(0.22 0.04 260);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0.05 260);
+  --card-foreground: oklch(0.22 0.04 260);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0.05 260);
-  --primary: oklch(0.7 0.22 50);
+  --popover-foreground: oklch(0.22 0.04 260);
+  --primary: oklch(0.55 0.19 250);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.94 0.08 155);
-  --secondary-foreground: oklch(0.2 0.05 260);
-  --muted: oklch(0.94 0.04 80);
-  --muted-foreground: oklch(0.45 0.05 260);
-  --accent: oklch(0.9 0.14 60);
-  --accent-foreground: oklch(0.2 0.05 260);
-  --destructive: oklch(0.62 0.26 27);
+  --secondary: oklch(0.96 0.02 80);
+  --secondary-foreground: oklch(0.25 0.05 260);
+  --muted: oklch(0.96 0.015 90);
+  --muted-foreground: oklch(0.5 0.03 260);
+  --accent: oklch(0.95 0.05 60);
+  --accent-foreground: oklch(0.25 0.05 260);
+  --destructive: oklch(0.6 0.24 27);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.85 0.06 70);
-  --input: oklch(0.9 0.04 80);
-  --ring: oklch(0.72 0.2 55);
+  --border: oklch(0.9 0.02 90);
+  --input: oklch(0.92 0.02 90);
+  --ring: oklch(0.7 0.15 60);
 
-  /* Indian flag tricolor palette — bright & saturated */
-  --saffron: oklch(0.74 0.22 50);        /* vivid #FF9933-ish */
-  --saffron-deep: oklch(0.63 0.24 40);   /* deep saffron */
-  --india-green: oklch(0.58 0.22 150);   /* vivid #009933 */
-  --india-green-deep: oklch(0.45 0.2 150);
-  --navy: oklch(0.32 0.18 265);          /* Ashoka blue */
-  --navy-deep: oklch(0.22 0.16 265);
-  --cream: oklch(0.985 0.02 85);
+  /* Indian flag tricolor palette */
+  --saffron: oklch(0.75 0.18 55);        /* #FF9933 */
+  --saffron-deep: oklch(0.68 0.19 45);
+  --india-green: oklch(0.62 0.16 155);   /* #138808 */
+  --india-green-deep: oklch(0.5 0.15 155);
+  --navy: oklch(0.35 0.14 260);          /* Ashoka blue */
+  --navy-deep: oklch(0.25 0.14 260);
+  --cream: oklch(0.985 0.008 85);
 }
 
 .dark {
@@ -100,17 +100,9 @@
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
   body {
+    background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    background:
-      radial-gradient(circle at 0% 0%, color-mix(in oklch, var(--saffron) 55%, transparent), transparent 45%),
-      radial-gradient(circle at 100% 100%, color-mix(in oklch, var(--india-green) 50%, transparent), transparent 45%),
-      radial-gradient(circle at 50% 40%, color-mix(in oklch, var(--navy) 15%, transparent), transparent 55%),
-      linear-gradient(180deg,
-        color-mix(in oklch, var(--saffron) 30%, white) 0%,
-        color-mix(in oklch, var(--cream) 100%, transparent) 45%,
-        color-mix(in oklch, var(--india-green) 25%, white) 100%);
-    background-attachment: fixed;
   }
 }
 
@@ -130,41 +122,18 @@
 @utility bg-tricolor-soft {
   background: linear-gradient(
     180deg,
-    color-mix(in oklch, var(--saffron) 45%, transparent) 0%,
-    color-mix(in oklch, var(--cream) 90%, transparent) 45%,
-    color-mix(in oklch, var(--cream) 90%, transparent) 55%,
-    color-mix(in oklch, var(--india-green) 45%, transparent) 100%
+    color-mix(in oklch, var(--saffron) 22%, transparent) 0%,
+    color-mix(in oklch, var(--cream) 100%, transparent) 45%,
+    color-mix(in oklch, var(--cream) 100%, transparent) 55%,
+    color-mix(in oklch, var(--india-green) 22%, transparent) 100%
   );
 }
 
 @utility bg-tricolor-radial {
   background:
-    radial-gradient(circle at 12% 8%, color-mix(in oklch, var(--saffron) 75%, transparent), transparent 42%),
-    radial-gradient(circle at 88% 92%, color-mix(in oklch, var(--india-green) 65%, transparent), transparent 42%),
-    radial-gradient(circle at 50% 60%, color-mix(in oklch, var(--navy) 25%, transparent), transparent 60%),
-    linear-gradient(180deg,
-      color-mix(in oklch, var(--saffron) 35%, white) 0%,
-      color-mix(in oklch, var(--cream) 95%, white) 45%,
-      color-mix(in oklch, var(--india-green) 30%, white) 100%);
-}
-
-@utility bg-saffron-panel {
-  background: linear-gradient(135deg,
-    color-mix(in oklch, var(--saffron) 90%, white) 0%,
-    color-mix(in oklch, var(--saffron-deep) 80%, transparent) 100%);
-  color: white;
-}
-
-@utility bg-green-panel {
-  background: linear-gradient(135deg,
-    color-mix(in oklch, var(--india-green) 90%, white) 0%,
-    color-mix(in oklch, var(--india-green-deep) 90%, transparent) 100%);
-  color: white;
-}
-
-@utility bg-navy-panel {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
-  color: white;
+    radial-gradient(circle at 15% 10%, color-mix(in oklch, var(--saffron) 35%, transparent), transparent 45%),
+    radial-gradient(circle at 85% 90%, color-mix(in oklch, var(--india-green) 30%, transparent), transparent 45%),
+    linear-gradient(180deg, color-mix(in oklch, var(--saffron) 12%, white), white 40%, color-mix(in oklch, var(--india-green) 12%, white));
 }
 
 @utility text-tricolor {
@@ -177,32 +146,15 @@
 @utility btn-saffron {
   background: linear-gradient(135deg, var(--saffron) 0%, var(--saffron-deep) 100%);
   color: white;
-  box-shadow: 0 6px 20px -4px color-mix(in oklch, var(--saffron) 70%, transparent);
-  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
-  &:hover {
-    filter: brightness(1.1);
-    transform: translateY(-1px);
-    box-shadow: 0 10px 26px -6px color-mix(in oklch, var(--saffron) 80%, transparent);
-  }
+  box-shadow: 0 4px 14px -4px color-mix(in oklch, var(--saffron) 60%, transparent);
+  &:hover { filter: brightness(1.05); }
 }
 
 @utility btn-green {
   background: linear-gradient(135deg, var(--india-green) 0%, var(--india-green-deep) 100%);
   color: white;
-  box-shadow: 0 6px 20px -4px color-mix(in oklch, var(--india-green) 70%, transparent);
-  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
-  &:hover {
-    filter: brightness(1.1);
-    transform: translateY(-1px);
-    box-shadow: 0 10px 26px -6px color-mix(in oklch, var(--india-green) 80%, transparent);
-  }
-}
-
-@utility btn-navy {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
-  color: white;
-  box-shadow: 0 6px 20px -4px color-mix(in oklch, var(--navy) 65%, transparent);
-  &:hover { filter: brightness(1.15); }
+  box-shadow: 0 4px 14px -4px color-mix(in oklch, var(--india-green) 60%, transparent);
+  &:hover { filter: brightness(1.05); }
 }
 
 @utility chakra-watermark {
@@ -212,8 +164,8 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g fill='none' stroke='%23000080' stroke-width='1.4' opacity='0.14'><circle cx='100' cy='100' r='72'/><circle cx='100' cy='100' r='10' fill='%23000080' opacity='0.22'/><g><line x1='100' y1='28' x2='100' y2='172'/><line x1='28' y1='100' x2='172' y2='100'/><line x1='49' y1='49' x2='151' y2='151'/><line x1='151' y1='49' x2='49' y2='151'/><line x1='100' y1='28' x2='69' y2='170'/><line x1='100' y1='28' x2='131' y2='170'/><line x1='28' y1='100' x2='170' y2='131'/><line x1='28' y1='100' x2='170' y2='69'/><line x1='172' y1='100' x2='30' y2='131'/><line x1='172' y1='100' x2='30' y2='69'/><line x1='100' y1='172' x2='131' y2='30'/><line x1='100' y1='172' x2='69' y2='30'/></g></g></svg>");
-    background-size: 240px 240px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g fill='none' stroke='%23234099' stroke-width='1.2' opacity='0.08'><circle cx='100' cy='100' r='72'/><circle cx='100' cy='100' r='10' fill='%23234099' opacity='0.12'/><g><line x1='100' y1='28' x2='100' y2='172'/><line x1='28' y1='100' x2='172' y2='100'/><line x1='49' y1='49' x2='151' y2='151'/><line x1='151' y1='49' x2='49' y2='151'/><line x1='100' y1='28' x2='69' y2='170'/><line x1='100' y1='28' x2='131' y2='170'/><line x1='28' y1='100' x2='170' y2='131'/><line x1='28' y1='100' x2='170' y2='69'/><line x1='172' y1='100' x2='30' y2='131'/><line x1='172' y1='100' x2='30' y2='69'/><line x1='100' y1='172' x2='131' y2='30'/><line x1='100' y1='172' x2='69' y2='30'/></g></g></svg>");
+    background-size: 260px 260px;
     background-repeat: repeat;
     pointer-events: none;
     z-index: -1;
@@ -222,35 +174,13 @@
 
 @utility card-elevate {
   background: white;
-  border: 1.5px solid color-mix(in oklch, var(--saffron) 35%, var(--border));
-  box-shadow:
-    0 1px 2px rgb(0 0 0 / 0.06),
-    0 10px 30px -12px color-mix(in oklch, var(--navy) 40%, transparent),
-    inset 0 0 0 1px rgb(255 255 255 / 0.4);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  border: 1px solid color-mix(in oklch, var(--saffron) 20%, var(--border));
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -12px color-mix(in oklch, var(--navy) 25%, transparent);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
   &:hover {
-    transform: translateY(-3px);
-    border-color: color-mix(in oklch, var(--saffron) 55%, var(--border));
-    box-shadow:
-      0 6px 12px rgb(0 0 0 / 0.08),
-      0 22px 44px -14px color-mix(in oklch, var(--saffron) 45%, transparent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 0.06), 0 16px 32px -12px color-mix(in oklch, var(--navy) 35%, transparent);
   }
-}
-
-@utility card-glow-saffron {
-  background: linear-gradient(135deg,
-    color-mix(in oklch, var(--saffron) 18%, white) 0%,
-    white 60%);
-  border: 1.5px solid color-mix(in oklch, var(--saffron) 55%, transparent);
-  box-shadow: 0 12px 34px -14px color-mix(in oklch, var(--saffron) 65%, transparent);
-}
-
-@utility card-glow-green {
-  background: linear-gradient(135deg,
-    color-mix(in oklch, var(--india-green) 18%, white) 0%,
-    white 60%);
-  border: 1.5px solid color-mix(in oklch, var(--india-green) 55%, transparent);
-  box-shadow: 0 12px 34px -14px color-mix(in oklch, var(--india-green) 60%, transparent);
 }
 
 @keyframes spin-slow { to { transform: rotate(360deg); } }
@@ -261,32 +191,7 @@
   66%, 100% { opacity: 0; transform: translateY(8px); }
 }
 @keyframes float-up { from { opacity: 0; transform: translateY(12px);} to { opacity: 1; transform: translateY(0);} }
-@keyframes pulse-ring {
-  0% { box-shadow: 0 0 0 0 color-mix(in oklch, var(--saffron) 60%, transparent); }
-  70% { box-shadow: 0 0 0 16px color-mix(in oklch, var(--saffron) 0%, transparent); }
-  100% { box-shadow: 0 0 0 0 color-mix(in oklch, var(--saffron) 0%, transparent); }
-}
-@keyframes shimmer-tricolor {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-@keyframes wave-flag {
-  0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-4px) rotate(1deg); }
-}
 
 .animate-spin-slow { animation: spin-slow 12s linear infinite; }
 .animate-marquee { animation: marquee 45s linear infinite; }
 .animate-float-up { animation: float-up 0.5s ease-out both; }
-.animate-pulse-ring { animation: pulse-ring 1.8s ease-out infinite; }
-.animate-wave { animation: wave-flag 3s ease-in-out infinite; }
-.text-shimmer {
-  background: linear-gradient(90deg, var(--saffron-deep), var(--navy), var(--india-green-deep), var(--saffron-deep));
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shimmer-tricolor 6s linear infinite;
-}
-
