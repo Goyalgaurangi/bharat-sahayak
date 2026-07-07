@@ -7,6 +7,7 @@ import { Navigator } from "@/components/Navigator";
 import { Schemes } from "@/components/Schemes";
 import { ComplaintUpload } from "@/components/ComplaintUpload";
 import { VoiceCopilot } from "@/components/VoiceCopilot";
+import { VisitPredictor } from "@/components/VisitPredictor";
 import { News } from "@/components/News";
 import { ChakraIcon } from "@/components/ChakraIcon";
 
@@ -40,6 +41,7 @@ function Shell() {
       <Nav />
       <Hero onChipClick={setPreset} />
       <Navigator presetQuery={preset} />
+      <VisitPredictor />
       <Schemes />
       <ComplaintUpload />
       <VoiceCopilot />
