@@ -36,6 +36,14 @@ function Footer() {
 
 function Shell() {
   const [preset, setPreset] = useState("");
+  // Assuming your i18n hook exposes the current language state (e.g., 'en' or 'hi')
+  const { currentLang } = useLang(); 
+
+  useEffect(() => {
+    if (currentLang) {
+      document.documentElement.lang = currentLang;
+    }
+  }, [currentLang]);
   return (
     <div className="min-h-screen font-sans">
       {/* Structural Headers/Nav elements go inside <nav> or <header> within your <Nav /> component */}
