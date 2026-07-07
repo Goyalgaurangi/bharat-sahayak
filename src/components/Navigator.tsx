@@ -158,6 +158,12 @@ export function Navigator({ presetQuery }: { presetQuery: string }) {
                   </li>
                 ))}
               </ol>
+              <button
+                onClick={() => document.getElementById("visit")?.scrollIntoView({ behavior: "smooth" })}
+                className="mt-5 w-full btn-green rounded-xl px-4 py-3 font-bold inline-flex items-center justify-center gap-2"
+              >
+                📍 {s("planMyVisit")}
+              </button>
             </div>
           </div>
         )}
